@@ -50,6 +50,15 @@
             <field name="perm_delete" eval="False"/>
         </record>
 
+        <record model="ir.model.access" id="access_gnuhealth_du_z_carga_rapida_empleado">
+            <field name="model" search="[('model', '=', 'gnuhealth.du')]"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
         <record model="ir.ui.menu-res.group" id="menu_company-z_carga_rapida_empleado">
             <field name="menu" ref="company.menu_company"/>
             <field name="group" ref="z_carga_rapida_empleado"/>

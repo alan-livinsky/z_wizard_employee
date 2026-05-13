@@ -155,6 +155,7 @@ class QuickEmployeeWizard(Wizard):
         pool = Pool()
         Party = pool.get('party.party')
         Employee = pool.get('company.employee')
+        DomiciliaryUnit = pool.get('gnuhealth.du')
         Address = pool.get('party.address')
         ContactMechanism = pool.get('party.contact_mechanism')
         AlternativePersonID = pool.get(
@@ -168,6 +169,12 @@ class QuickEmployeeWizard(Wizard):
 
         self._create_missing_alternative_id(
             party, AlternativePersonID)
+        if party.du:
+            self._fill_du_if_empty(party.du, DomiciliaryUnit)
+        else:
+            du, = DomiciliaryUnit.create([self._get_du_values()])
+            Party.write([party], {'du': du.id})
+
         self._create_or_update_address(party, Address)
         self._create_or_update_contacts(party, ContactMechanism)
 
@@ -278,6 +285,55 @@ class QuickEmployeeWizard(Wizard):
         if postal_field and _clean(self.start.zip):
             values[postal_field] = _clean(self.start.zip)
         Address.create([values])
+
+    def _generate_du_code(self):
+        DomiciliaryUnit = Pool().get('gnuhealth.du')
+        base = 'DU-%s' % _clean(self.start.ref)
+        code = base
+        index = 1
+        while DomiciliaryUnit.search([('name', '=', code)], limit=1):
+            index += 1
+            code = '%s-%s' % (base, index)
+        return code
+
+    def _get_du_values(self):
+        return {
+            'name': self._generate_du_code(),
+            'desc': '%s %s' % (
+                _clean(self.start.first_name),
+                _clean(self.start.last_name)),
+            'address_street': _clean(self.start.street),
+            'address_street_number': _clean(self.start.street_number),
+            'address_street_bis': _clean(self.start.unit),
+            'address_municipality': _clean(self.start.municipality),
+            'address_city': _clean(self.start.city),
+            'address_zip': _clean(self.start.zip),
+            'address_country': self.start.country.id,
+            'address_subdivision': (
+                self.start.subdivision.id if self.start.subdivision else None
+            ),
+        }
+
+    def _fill_du_if_empty(self, du, DomiciliaryUnit):
+        values = {}
+        for field_name, value in [
+                ('desc', '%s %s' % (
+                    _clean(self.start.first_name),
+                    _clean(self.start.last_name))),
+                ('address_street', _clean(self.start.street)),
+                ('address_street_number', _clean(self.start.street_number)),
+                ('address_street_bis', _clean(self.start.unit)),
+                ('address_municipality', _clean(self.start.municipality)),
+                ('address_city', _clean(self.start.city)),
+                ('address_zip', _clean(self.start.zip))]:
+            if not getattr(du, field_name) and value:
+                values[field_name] = value
+        if not du.address_country and self.start.country:
+            values['address_country'] = self.start.country.id
+        if not du.address_subdivision and self.start.subdivision:
+            values['address_subdivision'] = self.start.subdivision.id
+        if values:
+            DomiciliaryUnit.write([du], values)
 
     def _create_or_update_contacts(self, party, ContactMechanism):
         self._create_or_update_contact(
