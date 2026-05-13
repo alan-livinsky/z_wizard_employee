@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<form col="4">
+    <separator string="Datos personales" colspan="4" id="datos_personales"/>
+    <label name="first_name"/>
+    <field name="first_name"/>
+    <label name="last_name"/>
+    <field name="last_name"/>
+    <label name="ref"/>
+    <field name="ref"/>
+    <label name="cuit"/>
+    <field name="cuit"/>
+    <label name="gender"/>
+    <field name="gender"/>
+
+    <separator string="Domicilio principal" colspan="4" id="datos_domicilio"/>
+    <label name="street"/>
+    <field name="street"/>
+    <label name="street_number"/>
+    <field name="street_number"/>
+    <label name="unit"/>
+    <field name="unit"/>
+    <label name="municipality"/>
+    <field name="municipality"/>
+    <label name="city"/>
+    <field name="city"/>
+    <label name="zip"/>
+    <field name="zip"/>
+    <label name="country"/>
+    <field name="country"/>
+    <label name="subdivision"/>
+    <field name="subdivision"/>
+
+    <separator string="Contactos" colspan="4" id="datos_contacto"/>
+    <label name="email"/>
+    <field name="email"/>
+    <label name="phone"/>
+    <field name="phone"/>
+
+    <separator string="Datos laborales" colspan="4" id="datos_laborales"/>
+    <label name="company"/>
+    <field name="company"/>
+    <label name="start_date"/>
+    <field name="start_date"/>
+    <label name="cargo"/>
+    <field name="cargo"/>
+    <label name="supervisor"/>
+    <field name="supervisor"/>
+</form>

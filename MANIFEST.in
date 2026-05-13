@@ -1,0 +1,6 @@
+include tryton.cfg
+include README.rst
+recursive-include view *.xml
+recursive-include wizard *.xml
+recursive-include data *.xml
+recursive-include locale *.po

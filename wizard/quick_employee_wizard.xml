@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<tryton>
+    <data>
+        <record model="res.group" id="z_carga_rapida_empleado">
+            <field name="name">z_carga_rapida_empleado</field>
+        </record>
+
+        <record model="ir.model.access" id="access_party_z_carga_rapida_empleado">
+            <field name="model" search="[('model', '=', 'party.party')]"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_party_address_z_carga_rapida_empleado">
+            <field name="model" search="[('model', '=', 'party.address')]"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_party_contact_mechanism_z_carga_rapida_empleado">
+            <field name="model" search="[('model', '=', 'party.contact_mechanism')]"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_company_employee_z_carga_rapida_empleado">
+            <field name="model" search="[('model', '=', 'company.employee')]"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="access_gnuhealth_alternative_id_z_carga_rapida_empleado">
+            <field name="model" search="[('model', '=', 'gnuhealth.person_alternative_identification')]"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_company-z_carga_rapida_empleado">
+            <field name="menu" ref="company.menu_company"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+        </record>
+
+        <record model="ir.ui.view" id="quick_employee_start_view_form">
+            <field name="model">z_wizard_employee.quick_employee.start</field>
+            <field name="type">form</field>
+            <field name="name">quick_employee_start</field>
+        </record>
+
+        <record model="ir.action.wizard" id="act_quick_employee_wizard">
+            <field name="name">Carga rapida empleado</field>
+            <field name="wiz_name">z_wizard_employee.quick_employee</field>
+        </record>
+
+        <record model="ir.action-res.group" id="act_quick_employee_wizard-z_carga_rapida_empleado">
+            <field name="action" ref="act_quick_employee_wizard"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+        </record>
+
+        <menuitem
+            id="menu_quick_employee_wizard"
+            parent="company.menu_company"
+            action="act_quick_employee_wizard"
+            sequence="25"
+            icon="tryton-party"
+            name="Carga rapida empleado"/>
+
+        <record model="ir.ui.menu-res.group" id="menu_quick_employee_wizard-z_carga_rapida_empleado">
+            <field name="menu" ref="menu_quick_employee_wizard"/>
+            <field name="group" ref="z_carga_rapida_empleado"/>
+        </record>
+    </data>
+</tryton>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<tryton>
+    <data grouped="1">
+        <record model="ir.message" id="msg_missing_first_name">
+            <field name="text">Debe informar el nombre.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_last_name">
+            <field name="text">Debe informar el apellido.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_ref">
+            <field name="text">Debe informar el DNI / IDUP.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_gender">
+            <field name="text">Debe informar el genero.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_street">
+            <field name="text">Debe informar la calle de la direccion principal.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_city">
+            <field name="text">Debe informar la ciudad de la direccion principal.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_country">
+            <field name="text">Debe informar el pais de la direccion principal.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_company">
+            <field name="text">Debe seleccionar la empresa contratante.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_start_date">
+            <field name="text">Debe informar la fecha de inicio.</field>
+        </record>
+        <record model="ir.message" id="msg_missing_cargo">
+            <field name="text">Debe informar el cargo.</field>
+        </record>
+        <record model="ir.message" id="msg_invalid_cuit">
+            <field name="text">El CUIT debe contener solo numeros.</field>
+        </record>
+        <record model="ir.message" id="msg_duplicate_party_for_ref">
+            <field name="text">Existe mas de una persona con el DNI / IDUP %(ref)s. Revise los datos antes de continuar.</field>
+        </record>
+        <record model="ir.message" id="msg_existing_employee_opening">
+            <field name="text">Ya existe un empleado para el DNI / IDUP %(ref)s (%(employee)s). Se abrira su ficha.</field>
+        </record>
+    </data>
+</tryton>
