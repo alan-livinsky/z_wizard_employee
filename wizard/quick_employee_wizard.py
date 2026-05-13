@@ -39,7 +39,7 @@ class QuickEmployeeStart(ModelView):
     country = fields.Many2One('country.country', 'Pais', required=True)
     subdivision = fields.Many2One(
         'country.subdivision', 'Provincia',
-        domain=[('country', '=', Eval('country'))],
+        domain=[('country', '=', Eval('country', -1))],
         depends=['country'])
     email = fields.Char('Correo electronico')
     phone = fields.Char('Telefono')
@@ -49,7 +49,7 @@ class QuickEmployeeStart(ModelView):
     cargo = fields.Char('Cargo', required=True)
     supervisor = fields.Many2One(
         'company.employee', 'Supervisor',
-        domain=[('company', '=', Eval('company'))],
+        domain=[('company', '=', Eval('company', -1))],
         depends=['company'])
 
     @staticmethod
